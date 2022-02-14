@@ -1,4 +1,5 @@
 Pokedex App with React Native
+Context API used for state management
 
 API: https://pokeapi.co/
 
