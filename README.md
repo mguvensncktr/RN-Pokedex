@@ -3,7 +3,7 @@ Pokedex App with React Native
 API: https://pokeapi.co/
 
 
-Screenshots:
+Screenshots: (resized images)
 
 
 ![Screenshot_1644856511](https://user-images.githubusercontent.com/93079470/153906977-b02386b7-3f63-41df-ac5a-00aaa2f76f89.png)
