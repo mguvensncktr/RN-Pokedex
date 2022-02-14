@@ -14,9 +14,8 @@ export const PokeContextProvider = ({ children }) => {
         setPokemons(res.data.results);
     }
 
-
     return (
-        <PokeContext.Provider value={{ fetchPokemons, pokemons }}>
+        <PokeContext.Provider value={{ fetchPokemons, pokemons, setPokemons }}>
             {children}
         </PokeContext.Provider>
     )

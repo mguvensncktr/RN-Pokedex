@@ -1,23 +1,37 @@
 import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Entypo } from '@expo/vector-icons';
 
 const DetailScreen = ({ route, navigation }) => {
 
     const { name, url, id, type, pokeInfo } = route.params;
     const imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-
+    const [fav, setFav] = useState(false);
 
     function renderHeader() {
         return (
-            <TouchableOpacity style={{ width: 50, marginTop: 40, marginLeft: 12, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center' }}
-                onPress={() => navigation.goBack()}
-            >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Entypo name="chevron-left" size={24} color="blue" />
-                    <Text style={{ color: 'blue', marginLeft: 5, fontSize: 16 }}>Back</Text>
-                </View>
-            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', marginTop: 40, justifyContent: 'space-between', marginHorizontal: 12, alignItems: 'center' }}>
+                <TouchableOpacity style={{ width: 50, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center' }}
+                    onPress={() => navigation.goBack()}
+                >
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Entypo name="chevron-left" size={24} color="blue" />
+                        <Text style={{ color: 'blue', marginLeft: 5, fontSize: 16 }}>Back</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{
+                        width: 50,
+                        height: 50,
+                        borderRadius: 25,
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                    onPress={() => setFav(!fav)}
+                >
+                    <Entypo name={fav ? "heart" : "heart-outlined"} size={30} color="red" />
+                </TouchableOpacity>
+            </View>
         )
     }
 
