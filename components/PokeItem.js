@@ -49,7 +49,7 @@ const PokeItem = (item) => {
 
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('Detail', { url: url, name: name, id: pokeID })}
+            onPress={() => navigation.navigate('Detail', { url: url, name: name, id: pokeID, type: type, pokeInfo: pokeInfo })}
             style={{ margin: 12, flex: 1, borderRadius: 20, backgroundColor: backgroundColor[type], paddingVertical: 10, justifyContent: 'center', alignItems: 'center', ...styles.shadow }}>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{name[0].toUpperCase() + name.slice(1)}</Text>
