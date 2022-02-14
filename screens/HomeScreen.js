@@ -51,7 +51,7 @@ const HomeScreen = () => {
                         onPress={() => search ? handleOnClose() : handleSubmit()}
                     >
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            {search ? <AntDesign name='close' size={20} color='white' /> : <AntDesign name='search1' size={20} color='white' />}
+                            {search ? <AntDesign name='close' size={18} color='white' /> : <AntDesign name='search1' size={18} color='white' />}
                             <Text style={{ color: 'white', marginLeft: 5 }}>{search ? "See All" : "Search"}</Text>
                         </View>
                     </TouchableOpacity>
