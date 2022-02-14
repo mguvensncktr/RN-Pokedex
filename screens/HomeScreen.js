@@ -20,11 +20,11 @@ const HomeScreen = () => {
     function handleSubmit() {
         setSearch(!search)
         setPokemons(pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(input.toLowerCase())))
-        setInput('')
     }
 
     function handleOnClose() {
         setSearch(!search)
+        setInput('')
         fetchPokemons();
     }
 
