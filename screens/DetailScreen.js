@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native'
+import { View, Text, TouchableOpacity, Image, Platform } from 'react-native'
 import React, { useState } from 'react'
 import { Entypo } from '@expo/vector-icons';
 
@@ -10,7 +10,7 @@ const DetailScreen = ({ route, navigation }) => {
 
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', marginTop: 40, justifyContent: 'space-between', marginHorizontal: 12, alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', marginTop: Platform.OS === 'ios' ? 20 : 30, justifyContent: 'space-between', marginHorizontal: 12, alignItems: 'center' }}>
                 <TouchableOpacity style={{ width: 50, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => navigation.goBack()}
                 >
@@ -39,7 +39,7 @@ const DetailScreen = ({ route, navigation }) => {
         return (
             <View style={{ marginTop: 20 }}>
                 <View style={{ alignItems: 'center' }}>
-                    <Image source={{ uri: imageURL }} resizeMode="contain" style={{ width: '100%', height: 250 }} />
+                    <Image source={{ uri: imageURL }} resizeMode="contain" style={{ width: '100%', height: 225 }} />
                     <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{name.toUpperCase()}</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Text style={{ marginRight: 10, fontSize: 16, fontWeight: '700' }}>ID: #{id.padStart('3', '0')}</Text>
