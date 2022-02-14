@@ -10,7 +10,7 @@ export const PokeContextProvider = ({ children }) => {
     const [pokemons, setPokemons] = useState([]);
 
     const fetchPokemons = async () => {
-        const res = await axios.get(`${API}?limit=20`);
+        const res = await axios.get(`${API}?limit=50`);
         setPokemons(res.data.results);
     }
 

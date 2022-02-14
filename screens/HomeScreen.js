@@ -16,7 +16,7 @@ const HomeScreen = () => {
 
     function renderHeader() {
         return (
-            <View style={{ marginTop: 40, marginHorizontal: 12 }}>
+            <View style={{ marginTop: 40, marginHorizontal: 12, marginBottom: 12 }}>
                 <Text style={{ fontWeight: 'bold', fontSize: 32 }}>PokeDex</Text>
                 <View style={{ borderRadius: 20, paddingHorizontal: 20, borderWidth: 1, marginTop: 20 }}>
                     <TextInput placeholder='Search for a Pokemon!' style={{ borderRadius: 20, width: '100%', height: 40 }} />

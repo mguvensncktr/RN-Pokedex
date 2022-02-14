@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
@@ -9,6 +9,7 @@ const PokeItem = (item) => {
     const [type, setType] = useState('');
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const navigation = useNavigation()
     const { url, name } = item;
@@ -22,6 +23,7 @@ const PokeItem = (item) => {
             setType(res.data.types[0].type.name);
             setHeight(res.data.height);
             setWeight(res.data.weight);
+            setLoading(false);
         }
         fetchData();
     }, [])
@@ -46,26 +48,30 @@ const PokeItem = (item) => {
         'dragon': '#3F51B5',
     }
 
-
     return (
-        <TouchableOpacity
-            onPress={() => navigation.navigate('Detail', { url: url, name: name, id: pokeID, type: type, pokeInfo: pokeInfo })}
-            style={{ margin: 12, flex: 1, borderRadius: 20, backgroundColor: backgroundColor[type], paddingVertical: 10, justifyContent: 'center', alignItems: 'center', ...styles.shadow }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{name[0].toUpperCase() + name.slice(1)}</Text>
-                <Image source={{ uri: imageURL }} style={{ width: 100, height: 100 }} resizeMode="contain" />
+        loading ?
+            <ActivityIndicator />
+            :
+            <View>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Detail', { url: url, name: name, id: pokeID, type: type, pokeInfo: pokeInfo })}
+                    style={{ margin: 12, flex: 1, borderRadius: 20, backgroundColor: backgroundColor[type], paddingVertical: 10, justifyContent: 'center', alignItems: 'center', ...styles.shadow }}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{name[0].toUpperCase() + name.slice(1)}</Text>
+                        <Image source={{ uri: imageURL }} style={{ width: 100, height: 100 }} resizeMode="contain" />
+                    </View>
+                    <View style={{ marginTop: 6 }}>
+                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>#{pokeID.padStart('3', '0')}</Text>
+                    </View>
+                    <View style={{ backgroundColor: 'white', marginTop: 5, borderRadius: 20, width: 65, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: backgroundColor[type], textAlign: 'center', fontWeight: 'bold' }}>{type.toUpperCase()}</Text>
+                    </View>
+                    <View style={{ flex: 1, marginTop: 5, borderRadius: 20, width: 65, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: 'white', textAlign: 'center', margin: 'auto' }}>{height} CM</Text>
+                        <Text style={{ color: 'white', textAlign: 'center' }}>{weight} KG</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
-            <View style={{ marginTop: 6 }}>
-                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>#{pokeID.padStart('3', '0')}</Text>
-            </View>
-            <View style={{ backgroundColor: 'white', marginTop: 5, borderRadius: 20, width: 65, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: backgroundColor[type], textAlign: 'center', fontWeight: 'bold' }}>{type.toUpperCase()}</Text>
-            </View>
-            <View style={{ flex: 1, marginTop: 5, borderRadius: 20, width: 65, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: 'white', textAlign: 'center', margin: 'auto' }}>{height} CM</Text>
-                <Text style={{ color: 'white', textAlign: 'center' }}>{weight} KG</Text>
-            </View>
-        </TouchableOpacity>
     )
 }
 
